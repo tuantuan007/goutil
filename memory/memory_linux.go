@@ -8,16 +8,6 @@ import (
 	"strings"
 )
 
-// PhysicalMemoryArray 物理内存阵列
-type PhysicalMemoryArray struct {
-	Location               string
-	Use                    string
-	ErrorCorrectionType    string
-	MaximumCapacity        string
-	ErrorInformationHandle string
-	NumberOfDevices        string
-}
-
 // GetPhysicalMemoryArray 获取linux物理内存阵列
 func GetPhysicalMemoryArray() (*PhysicalMemoryArray, error) {
 	cmd := exec.Command("sh", "-c", "dmidecode -t 16 | grep -e 'Location' -e 'Use' -e 'Error Correction Type' -e 'Maximum Capacity' -e 'Error Information Handle' -e 'Number Of Devices'")
@@ -34,31 +24,6 @@ func GetPhysicalMemoryArray() (*PhysicalMemoryArray, error) {
 		ErrorInformationHandle: strings.Split(lines[4], ":")[1],
 		NumberOfDevices:        strings.Split(lines[5], ":")[1],
 	}, nil
-}
-
-// Device 内存设备
-type Device struct {
-	ArrayHandle            string
-	ErrorInformationHandle string
-	TotalWidth             string
-	DataWidth              string
-	Size                   string
-	FormFactor             string
-	Set                    string
-	Locator                string
-	BankLocator            string
-	Type                   string
-	TypeDetail             string
-	Speed                  string
-	Manufacturer           string
-	SerialNumber           string
-	AssetTag               string
-	PartNumber             string
-	Rank                   string
-	ConfiguredClockSpeed   string
-	MinimumVoltage         string
-	MaximumVoltage         string
-	ConfiguredVoltage      string
 }
 
 func GetMemoryDevices() ([]*Device, error) {
@@ -84,10 +49,6 @@ func GetMemoryDevices() ([]*Device, error) {
 			value := strings.TrimSpace(keyAndValue[1])
 			// 使用 switch 语句提取字段值
 			switch key {
-			case "Array Handle":
-				device.ArrayHandle = value
-			case "Error Information Handle":
-				device.ErrorInformationHandle = value
 			case "Total Width":
 				device.TotalWidth = value
 			case "Data Width":
@@ -96,8 +57,6 @@ func GetMemoryDevices() ([]*Device, error) {
 				device.Size = value
 			case "Form Factor":
 				device.FormFactor = value
-			case "Set":
-				device.Set = value
 			case "Locator":
 				device.Locator = value
 			case "Bank Locator":
