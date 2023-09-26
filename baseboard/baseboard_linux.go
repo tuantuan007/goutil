@@ -18,7 +18,7 @@ func GetBaseboardInformation() (*BaseboardInformation, error) {
 	// Create an empty BaseboardInformation struct
 	result := BaseboardInformation{}
 	// Create a regular expression to match the Base Board BaseboardInformation
-	re := regexp.MustCompile(`Base Board BaseboardInformation([\s\S]+)`)
+	re := regexp.MustCompile(`Base Board Information([\s\S]+)`)
 	// Find all matches in the output
 	matches := re.FindSubmatch(output)
 	if len(matches) < 2 {
