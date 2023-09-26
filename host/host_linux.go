@@ -4,6 +4,7 @@ package host
 
 import (
 	"bytes"
+	"gopkg.in/yaml.v3"
 	"os/exec"
 )
 

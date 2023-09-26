@@ -3,6 +3,7 @@ package baseboard
 import (
 	"bytes"
 	"errors"
+	"gopkg.in/yaml.v3"
 	"os/exec"
 	"regexp"
 )
