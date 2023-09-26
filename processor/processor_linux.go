@@ -16,7 +16,7 @@ import (
 func GetProcessorInformation() (*ProcessorInformation, error) {
 	p := &ProcessorInformation{}
 	// 调用dmidecode命令，获取处理器信息
-	output, err := exec.Command("sh", "-c", "dmidecode -t 4").Output()
+	output, err := exec.Command("sh", "-c", "dmidecode -t processor").Output()
 	if err != nil {
 		return nil, err
 	}
