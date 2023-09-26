@@ -23,7 +23,7 @@ func GetProcessorInformation() (*ProcessorInformation, error) {
 	// 获取处理器信息
 	result := unsafe.String(unsafe.SliceData(output), len(output))
 	// 匹配Processor ProcessorInformation
-	pattern := `Processor ProcessorInformation\n([\s\S]+)`
+	pattern := `Processor Information\n([\s\S]+)`
 	re := regexp.MustCompile(pattern)
 	matches := re.FindStringSubmatch(result)
 	if len(matches) < 2 {
