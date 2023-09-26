@@ -10,7 +10,7 @@ import (
 )
 
 // GetGraphicsCardInformation 获取显卡信息
-func GetGraphicsCardInformation() (*Information, error) {
+func GetGraphicsCardInformation() (*GraphicsInformation, error) {
 	output, err := exec.Command("sh", "-c", "lspci -vnn | grep VGA -A 12").Output()
 	if err != nil {
 		return nil, err
@@ -20,7 +20,7 @@ func GetGraphicsCardInformation() (*Information, error) {
 	prefetchableMemoryRegex := regexp.MustCompile(`.*Memory at .* prefetchable.* \[size=(.+)]`)
 	ioPortRegex := regexp.MustCompile(`.*I/O ports at (\d+) \[size=(\d+)]`)
 	result := unsafe.String(unsafe.SliceData(output), len(output))
-	info := &Information{}
+	info := &GraphicsInformation{}
 	matches := manufactureRegex.FindStringSubmatch(result)
 	info.Manufacturer = matches[1]
 	info.DeviceID = matches[2]

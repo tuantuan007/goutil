@@ -1,6 +1,6 @@
 package host
 
-type Information struct {
+type HostInformation struct {
 	StaticHostname  string `yaml:"Static hostname"`
 	IconName        string `yaml:"Icon name"`
 	Chassis         string `yaml:"Chassis"`

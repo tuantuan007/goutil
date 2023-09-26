@@ -9,7 +9,7 @@ import (
 	"unsafe"
 )
 
-// Information 显卡信息
+// GraphicsInformation 显卡信息
 type Information struct {
 	Manufacturer    string `json:"Manufacturer,omitempty"`
 	DeviceID        string `json:"DeviceID,omitempty"`

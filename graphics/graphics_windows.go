@@ -69,13 +69,13 @@ type Win32_VideoController struct {
 	VideoProcessor               string    `json:"VideoProcessor"`
 }
 
-func GetGraphicsCardInformation() (*Information, error) {
+func GetGraphicsCardInformation() (*GraphicsInformation, error) {
 	dst, err := windows.Query[Win32_VideoController]()
 	if err != nil {
 		return nil, err
 	}
 	result := dst[0]
-	return &Information{
+	return &GraphicsInformation{
 		Manufacturer: result.AdapterCompatibility,
 		DeviceID:     result.DeviceID,
 		Name:         result.Name,

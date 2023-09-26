@@ -4,12 +4,11 @@ package host
 
 import (
 	"bytes"
-	"gopkg.in/yaml.v3"
 	"os/exec"
 )
 
-func GetHostInformation() (*Information, error) {
-	info := &Information{}
+func GetHostInformation() (*HostInformation, error) {
+	info := &HostInformation{}
 	output, err := exec.Command("hostnamectl", "status").Output()
 	if err != nil {
 		return nil, err

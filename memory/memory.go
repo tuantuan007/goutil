@@ -10,8 +10,8 @@ type PhysicalMemoryArray struct {
 	NumberOfDevices        string
 }
 
-// Device 内存设备
-type Device struct {
+// MemoryDeviceInformation 内存设备
+type MemoryDeviceInformation struct {
 	TotalWidth           string
 	DataWidth            string
 	Size                 string

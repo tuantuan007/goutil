@@ -34,13 +34,13 @@ type Win32_OperatingSystem struct {
 	SystemDrive          string
 }
 
-func GetHostInformation() (*Information, error) {
+func GetHostInformation() (*HostInformation, error) {
 	results, err := windows.Query[Win32_OperatingSystem]()
 	if err != nil {
 		return nil, err
 	}
 	result := results[0]
-	return &Information{
+	return &HostInformation{
 		StaticHostname:  result.CSName,
 		IconName:        result.Name,
 		Chassis:         result.BuildType,

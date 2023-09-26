@@ -252,13 +252,13 @@ var (
 	}
 )
 
-func GetProcessorInformation() (*Information, error) {
+func GetProcessorInformation() (*ProcessorInformation, error) {
 	dst, err := windows.Query[Win32_Processor]()
 	if err != nil {
 		return nil, err
 	}
 	result := dst[0]
-	info := &Information{
+	info := &ProcessorInformation{
 		SocketDesignation: result.SocketDesignation,
 		Type:              TypeMap[result.ProcessorType],
 		Family:            FamilyMap[result.Family],

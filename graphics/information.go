@@ -1,7 +1,7 @@
 package graphics
 
-// Information 显卡信息
-type Information struct {
+// GraphicsInformation 显卡信息
+type GraphicsInformation struct {
 	Manufacturer    string `json:"Manufacturer,omitempty"`
 	Name            string
 	DeviceID        string `json:"DeviceID,omitempty"`

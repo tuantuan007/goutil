@@ -26,7 +26,7 @@ func GetPhysicalMemoryArray() (*PhysicalMemoryArray, error) {
 	}, nil
 }
 
-func GetMemoryDevices() ([]*Device, error) {
+func GetMemoryDevices() ([]*MemoryDeviceInformation, error) {
 	output, err := exec.Command("sh", "-c", "dmidecode -t 17").Output()
 	if err != nil {
 		return nil, err
@@ -36,9 +36,9 @@ func GetMemoryDevices() ([]*Device, error) {
 	// 使用正则表达式提取字段值
 	re := regexp.MustCompile(`(?s)Memory\sDevice(.*?)Memory\sDevice`)
 	matches := re.FindStringSubmatch(result)
-	devices := make([]*Device, 0, len(matches))
+	devices := make([]*MemoryDeviceInformation, 0, len(matches))
 	for _, match := range matches {
-		device := &Device{}
+		device := &MemoryDeviceInformation{}
 		lines := strings.Split(match, "\n")
 		for _, line := range lines {
 			keyAndValue := strings.SplitN(line, ":", 2)

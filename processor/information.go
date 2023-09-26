@@ -1,6 +1,6 @@
 package processor
 
-type Information struct {
+type ProcessorInformation struct {
 	// SocketDesignation 处理器的插槽名称
 	SocketDesignation string `yaml:"Socket Designation" json:"SocketDesignation,omitempty"`
 	// Type 处理器的类型

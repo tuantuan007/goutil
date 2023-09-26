@@ -208,14 +208,14 @@ var (
 	}
 )
 
-func GetMemoryDevices() ([]*Device, error) {
+func GetMemoryDevices() ([]*MemoryDeviceInformation, error) {
 	dst, err := windows.Query[Win32_PhysicalMemory]()
 	if err != nil {
 		return nil, err
 	}
-	devices := make([]*Device, 0, len(dst))
+	devices := make([]*MemoryDeviceInformation, 0, len(dst))
 	for _, memory := range dst {
-		devices = append(devices, &Device{
+		devices = append(devices, &MemoryDeviceInformation{
 			TotalWidth:           strconv.Itoa(int(memory.TotalWidth)) + " bits",
 			DataWidth:            strconv.Itoa(int(memory.DataWidth)) + " bits",
 			Size:                 strconv.FormatUint(memory.Capacity>>20, 10) + " MB",

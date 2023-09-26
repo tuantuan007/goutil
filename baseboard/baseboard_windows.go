@@ -39,7 +39,7 @@ type Win32_BaseBoard struct {
 	Width                   int
 }
 
-func GetBaseboardInformation() (*Information, error) {
+func GetBaseboardInformation() (*BaseboardInformation, error) {
 	dst, err := windows.Query[Win32_BaseBoard]()
 	if err != nil {
 		return nil, err
@@ -57,7 +57,7 @@ func GetBaseboardInformation() (*Information, error) {
 	if dst[0].Removable {
 		features = append(features, "Removable")
 	}
-	info := &Information{
+	info := &BaseboardInformation{
 		Manufacturer: dst[0].Manufacturer,
 		ProductName:  dst[0].Product,
 		Version:      dst[0].Version,

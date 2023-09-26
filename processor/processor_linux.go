@@ -5,7 +5,6 @@ package processor
 import (
 	"bytes"
 	"errors"
-	"gopkg.in/yaml.v3"
 	"os/exec"
 	"regexp"
 	"strings"
@@ -13,8 +12,8 @@ import (
 )
 
 // GetProcessorInformation 获取处理器信息
-func GetProcessorInformation() (*Information, error) {
-	p := &Information{}
+func GetProcessorInformation() (*ProcessorInformation, error) {
+	p := &ProcessorInformation{}
 	// 调用dmidecode命令，获取处理器信息
 	output, err := exec.Command("sh", "-c", "dmidecode -t 4").Output()
 	if err != nil {
@@ -22,8 +21,8 @@ func GetProcessorInformation() (*Information, error) {
 	}
 	// 获取处理器信息
 	result := unsafe.String(unsafe.SliceData(output), len(output))
-	// 匹配Processor Information
-	pattern := `Processor Information\n([\s\S]+)`
+	// 匹配Processor ProcessorInformation
+	pattern := `Processor ProcessorInformation\n([\s\S]+)`
 	re := regexp.MustCompile(pattern)
 	matches := re.FindStringSubmatch(result)
 	if len(matches) < 2 {

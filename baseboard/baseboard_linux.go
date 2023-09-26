@@ -3,22 +3,21 @@ package baseboard
 import (
 	"bytes"
 	"errors"
-	"gopkg.in/yaml.v3"
 	"os/exec"
 	"regexp"
 )
 
-func GetBaseboardInformation() (*Information, error) {
+func GetBaseboardInformation() (*BaseboardInformation, error) {
 	// Run the command "dmidecode -t 2" and store the output in the output variable
 	output, err := exec.Command("sh", "-c", "dmidecode -t 2").Output()
 	// If an error occurs, return nil and the error
 	if err != nil {
 		return nil, err
 	}
-	// Create an empty Information struct
-	result := Information{}
-	// Create a regular expression to match the Base Board Information
-	re := regexp.MustCompile(`Base Board Information([\s\S]+)`)
+	// Create an empty BaseboardInformation struct
+	result := BaseboardInformation{}
+	// Create a regular expression to match the Base Board BaseboardInformation
+	re := regexp.MustCompile(`Base Board BaseboardInformation([\s\S]+)`)
 	// Find all matches in the output
 	matches := re.FindSubmatch(output)
 	if len(matches) < 2 {

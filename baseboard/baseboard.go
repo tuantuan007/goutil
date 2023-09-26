@@ -1,6 +1,6 @@
 package baseboard
 
-type Information struct {
+type BaseboardInformation struct {
 	Manufacturer string   `yaml:"Manufacturer"`
 	ProductName  string   `yaml:"Product Name"`
 	Version      string   `yaml:"Version"`
