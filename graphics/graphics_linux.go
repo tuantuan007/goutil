@@ -18,7 +18,7 @@ func GetGraphicsCardInformation() (*GraphicsInformation, error) {
 	manufactureRegex := regexp.MustCompile(`(?i).*\[\d+\]: (\w+) Corporation.*\[(\w+:\w+)\].*\(rev (\w+)\)`)
 	nonPrefetchableMemoryRegex := regexp.MustCompile(`.*Memory at (.*)non-prefetchable.* \[size=(.+)]`)
 	prefetchableMemoryRegex := regexp.MustCompile(`.*Memory at .* prefetchable.* \[size=(.+)]`)
-	ioPortRegex := regexp.MustCompile(`.*I/O ports at (\d+) \[size=(\d+)]`)
+	ioPortRegex := regexp.MustCompile(`(?i).*I/O ports at ([a-z\d]+) \[size=(\d+)]`)
 	result := unsafe.String(unsafe.SliceData(output), len(output))
 	info := &GraphicsInformation{}
 	matches := manufactureRegex.FindStringSubmatch(result)
@@ -30,7 +30,7 @@ func GetGraphicsCardInformation() (*GraphicsInformation, error) {
 	matches = prefetchableMemoryRegex.FindStringSubmatch(result)
 	info.Prefetchable = matches[1]
 	matches = ioPortRegex.FindStringSubmatch(result)
-	info.IOPort, _ = strconv.Atoi(matches[1])
+	info.IOPort = matches[1]
 	info.IOSize, _ = strconv.Atoi(matches[2])
 	return info, nil
 }
