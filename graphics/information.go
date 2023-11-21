@@ -8,6 +8,6 @@ type GraphicsInformation struct {
 	Version         string `json:"Version,omitempty"`
 	NonPrefetchable string `json:"NonPrefetchable,omitempty"`
 	Prefetchable    string `json:"Prefetchable,omitempty"` // 预取内存大小
-	IOPort          int    `json:"IOPort,omitempty"`
+	IOPort          string `json:"IOPort,omitempty"`
 	IOSize          int    `json:"IOSize,omitempty"`
 }
