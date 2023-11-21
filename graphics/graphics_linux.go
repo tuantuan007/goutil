@@ -15,7 +15,7 @@ func GetGraphicsCardInformation() (*GraphicsInformation, error) {
 	if err != nil {
 		return nil, err
 	}
-	manufactureRegex := regexp.MustCompile(`.*: (.*?) Device \[(.*)] \(rev (.*?)\)`)
+	manufactureRegex := regexp.MustCompile(`(?i).*\[\d+\]: (\w+) Corporation.*\[(\w+:\w+)\].*\(rev (\w+)\)`)
 	nonPrefetchableMemoryRegex := regexp.MustCompile(`.*Memory at (.*)non-prefetchable.* \[size=(.+)]`)
 	prefetchableMemoryRegex := regexp.MustCompile(`.*Memory at .* prefetchable.* \[size=(.+)]`)
 	ioPortRegex := regexp.MustCompile(`.*I/O ports at (\d+) \[size=(\d+)]`)
