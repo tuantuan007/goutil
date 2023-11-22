@@ -3,7 +3,7 @@
 package processor
 
 import (
-	"goutil/common/windows"
+	"github.com/wxlbd/goutil/common/windows"
 	"strconv"
 )
 

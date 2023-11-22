@@ -2,7 +2,7 @@
 
 package host
 
-import "goutil/common/windows"
+import "github.com/wxlbd/goutil/common/windows"
 
 type Win32_OperatingSystem struct {
 	Version              string
